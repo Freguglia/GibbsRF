@@ -2,7 +2,7 @@
 % Please edit documentation in R/GibbsModel.R
 \name{GibbsModel}
 \alias{GibbsModel}
-\title{GibbsModel}
+\title{GibbsModel class object creation}
 \usage{
 GibbsModel(G, cMat, V = NULL, vMat = NULL)
 }

@@ -2,7 +2,8 @@
 % Please edit documentation in R/Potentials.R
 \name{Potentials}
 \alias{Potentials}
-\title{Data Frame representation of GibbsModel object for better visualization.}
+\title{GibbsModel to DataFrame conversion.
+Data Frame representation of GibbsModel object for better visualization.}
 \usage{
 Potentials(gModel)
 }
@@ -13,5 +14,6 @@ Potentials(gModel)
 A data.frame object with potentials values for each difference (column) and each relative position (row).
 }
 \description{
+GibbsModel to DataFrame conversion.
 Data Frame representation of GibbsModel object for better visualization.
 }
