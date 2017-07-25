@@ -1,0 +1,13 @@
+Package: GibbsRF
+Type: Package
+Title: Tools for Gibbs Random Fields models
+Version: 0.1.0
+Author: Victor Freguglia Souza <victorfreguglia@gmail.com>
+Maintainer: Victor Freguglia Souza <victorfreguglia@gmail.com>
+Description: Functions for simulating and estimating parameters in Gibbs Random Fields with multiple pairwise interactions.
+License: 
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 0.12.11), imager, ggplot2, RcppArmadillo
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1
