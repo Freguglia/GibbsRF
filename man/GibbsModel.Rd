@@ -9,15 +9,21 @@ GibbsModel(G, cMat, V = NULL, vMat = NULL)
 \arguments{
 \item{G}{An integer greater than 0, the maximum color value}
 
-\item{cMat}{a (Cx2) matrix where each line corresponds to relative position of neighbours.}
+\item{cMat}{a (C x 2) matrix where each line corresponds to relative position of neighbours.}
 
 \item{V}{a (G+1) vector corresponding to single site potentials (from 0 to G). Must sum 0. Can be NULL if vMat is also NULL.}
 
-\item{vMat}{a (Cx2G+1) matrix specifying potential values for each possible difference (from -G to G) and each type of neighbour.}
+\item{vMat}{a (C x 2G+1) matrix specifying potential values for each possible difference (from -G to G) and each type of neighbour.}
 }
 \value{
 A GibbsModel object with the specified values.
 }
 \description{
 Creates a GibbsModel object, given specifications of a Gibbs Random Field model.
+}
+\examples{
+GibbsModel(1,example.cMat,example.V,example.vMat)
+}
+\author{
+Victor Freguglia Souza
 }

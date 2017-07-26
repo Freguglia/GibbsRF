@@ -17,3 +17,9 @@ A data.frame object with potentials values for each difference (column) and each
 GibbsModel to DataFrame conversion.
 Data Frame representation of GibbsModel object for better visualization.
 }
+\examples{
+Potentials(examle.GibbsModel)
+}
+\author{
+Victor Freguglia Souza
+}

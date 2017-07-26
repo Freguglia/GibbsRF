@@ -6,6 +6,9 @@
 #' @param initial A matrix indicating the initial object to start sampling from. If NULL, start with each pixel drawn from an independent discrete uniform distribution.
 #' @param dim Used when the initial matrix is NULL. Indicates the dimension of the field to be sampled (x-axis first).
 #' @return A matrix, realization from the specified Gibbs Model.
+#' @author Victor Freguglia Souza
+#' @examples
+#' rGibbsRF(example.GibbsModel)
 #' @export
 
 rGibbsRF = function(gModel,macrosteps = 50,initial=NULL,dim=c(150,100)){

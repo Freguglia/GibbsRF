@@ -21,3 +21,10 @@ A GibbsModel object with the estimated vMat and V potentials values.
 \description{
 Potentials estimate via Maximum Pseudo-Lilelihood.
 }
+\examples{
+gibbsMPL(example.X,example.GibbsModel) \%>\% Potentials
+#Check if close to real values example.GibbsModel \%>\% Potentials
+}
+\author{
+Victor Freguglia Souza
+}

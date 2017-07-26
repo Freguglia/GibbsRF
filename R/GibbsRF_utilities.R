@@ -69,12 +69,12 @@ vec2gModel = function(vec,cMat,G,type){
     if(type=="symetric"){
       vMat[i,(G+2):(2*G+1)] = vec[(end+1):(end+G)]
       vMat[i,1:G] = vec[(end+G):(end+1)]
-      vMat[i,(G+1)] = -sum(vMat[i,])
+      vMat[i,(G+1)] = -sum(vMat[i,(G+1):(2*G+1)])
       end = end+G
     }
     if(type=="equal"){
       vMat[i,-(G+1)] = vec[(end+1)]
-      vMat[i,(G+1)] = -sum(vMat[i,])
+      vMat[i,(G+1)] = -vec[(end+1)]
       end = end+1
     }
   }

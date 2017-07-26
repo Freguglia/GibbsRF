@@ -3,6 +3,10 @@
 #'
 #' @param gModel A GibbsModel object with non-NULL potentials.
 #' @return A data.frame object with potentials values for each difference (column) and each relative position (row).
+#' @author Victor Freguglia Souza
+#' @examples
+#' Potentials(examle.GibbsModel)
+#' @export
 
 Potentials = function(gModel){
   C = nrow(gModel$cMat)

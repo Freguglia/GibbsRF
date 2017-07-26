@@ -6,6 +6,10 @@
 #' @param type Wich type of Energy function to be considered. "general" indicates all potentials are free. "symetric" indicates differences of the same absolute value have the same potential value. "equal" indicates all non-zero differences potentials have the same value.
 #' @param ... arguments to be passed to the optim() function during maximization.
 #' @return A GibbsModel object with the estimated vMat and V potentials values.
+#' @author Victor Freguglia Souza
+#' @examples
+#' gibbsMPL(example.X,example.GibbsModel) %>% Potentials
+#' #Check if close to real values example.GibbsModel %>% Potentials
 #' @export
 
 gibbsMPL = function(X,gModel,type = "symetric", ...){

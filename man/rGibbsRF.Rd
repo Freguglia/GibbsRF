@@ -21,3 +21,9 @@ A matrix, realization from the specified Gibbs Model.
 \description{
 Simulates a realization of a GibbsModel object via Gibbs Sampler.
 }
+\examples{
+rGibbsRF(example.GibbsModel)
+}
+\author{
+Victor Freguglia Souza
+}
