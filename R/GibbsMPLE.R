@@ -8,11 +8,11 @@
 #' @return A GibbsModel object with the estimated vMat and V potentials values.
 #' @author Victor Freguglia Souza
 #' @examples
-#' gibbsMPL(example.X,example.GibbsModel) %>% Potentials
+#' GibbsMPLE(example.X,example.GibbsModel) %>% Potentials
 #' #Check if close to real values example.GibbsModel %>% Potentials
 #' @export
 
-GibbsMPL = function(X,gModel,type = "symetric", ...){
+GibbsMPLE = function(X,gModel,type = "symetric", ...){
   if(!type %in% c("symetric","equal","general")){
     stop("specified type must be symetric, equal or general.")}
   cMat = gModel$cMat
