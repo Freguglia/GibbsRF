@@ -4,8 +4,8 @@
 \alias{GibbsMCMLE}
 \title{Monte-Carlo Maximum Likelihood Estimate of Potentials}
 \usage{
-GibbsMCMLE(X, gModelX, type = "symetric", gModelRef = "MPLE",
-  nsamples = 100, showProgress = TRUE, ...)
+GibbsMCMLE(X, gModelX, type = "symetric", gModelRef = "zero",
+  nsamples = 10000, showProgress = TRUE, macrosteps = 70, ...)
 }
 \arguments{
 \item{X}{the random field (matrix object).}
@@ -29,7 +29,7 @@ a GibbsModel object with the estimated potentials.
 Provides MC Maximum Likelihood Estimation of Potentials for a given image.
 }
 \examples{
-GibbsMCMLE(example.X,example.GibbsModel,"symetric","MPLE") \%>\% Potentials
+GibbsMCMLE(example.X,example.GibbsModel,"symetric","zero") \%>\% Potentials
 }
 \author{
 Victor Freguglia Souza

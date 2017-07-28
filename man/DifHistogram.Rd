@@ -11,6 +11,9 @@ DifHistogram(X, positions)
 
 \item{positions}{either the (C x 2) matrix of the relative positions considered or a GibbsModel object.}
 }
+\value{
+a matrix containing the difference histogram (counts from -G to G) for each relative position in each row.
+}
 \description{
 Creates the histogram of gray-level difference for each relative position in a given field.
 }
