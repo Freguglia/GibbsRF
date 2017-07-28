@@ -64,12 +64,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// DifHistogramcpp
+NumericMatrix DifHistogramcpp(NumericMatrix X, NumericMatrix cMat, int G);
+RcppExport SEXP GibbsRF_DifHistogramcpp(SEXP XSEXP, SEXP cMatSEXP, SEXP GSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
+    Rcpp::traits::input_parameter< int >::type G(GSEXP);
+    rcpp_result_gen = Rcpp::wrap(DifHistogramcpp(X, cMat, G));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"GibbsRF_RandomMatrixCpp", (DL_FUNC) &GibbsRF_RandomMatrixCpp, 2},
     {"GibbsRF_ConditionalProbs", (DL_FUNC) &GibbsRF_ConditionalProbs, 6},
     {"GibbsRF_rGRF", (DL_FUNC) &GibbsRF_rGRF, 6},
     {"GibbsRF_log_plik", (DL_FUNC) &GibbsRF_log_plik, 5},
+    {"GibbsRF_DifHistogramcpp", (DL_FUNC) &GibbsRF_DifHistogramcpp, 3},
     {NULL, NULL, 0}
 };
 

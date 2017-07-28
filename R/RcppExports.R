@@ -17,3 +17,7 @@ log_plik <- function(X, cMat, vMat, V, max_value) {
     .Call('GibbsRF_log_plik', PACKAGE = 'GibbsRF', X, cMat, vMat, V, max_value)
 }
 
+DifHistogramcpp <- function(X, cMat, G) {
+    .Call('GibbsRF_DifHistogramcpp', PACKAGE = 'GibbsRF', X, cMat, G)
+}
+

@@ -12,7 +12,7 @@
 #' #Check if close to real values example.GibbsModel %>% Potentials
 #' @export
 
-gibbsMPL = function(X,gModel,type = "symetric", ...){
+GibbsMPL = function(X,gModel,type = "symetric", ...){
   if(!type %in% c("symetric","equal","general")){
     stop("specified type must be symetric, equal or general.")}
   cMat = gModel$cMat

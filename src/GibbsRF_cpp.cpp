@@ -103,3 +103,26 @@ double log_plik(NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat,
   }
   return(loglik);
 }
+
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::export]]
+NumericMatrix DifHistogramcpp(NumericMatrix X,NumericMatrix cMat,int G){
+  int C = cMat.nrow();
+  int n = X.nrow();
+  int m = X.ncol();
+  int neix,neiy,dife;
+  NumericMatrix H(C,2*G+1);
+  for(int x=0;x<n;x++){
+    for(int y=0;y<m;y++){
+      for(int c=0;c<C;c++){
+        neix = x + cMat(0,c);
+        neiy = y + cMat(1,c);
+        if(neix>=0 && neix<n && neiy<m && neiy>=0){
+          dife = X(x,y) - X(neix,neiy);
+          H(c,(dife+G))++;
+        }
+      }
+    }
+  }
+  return(H);
+}
