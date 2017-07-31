@@ -21,7 +21,7 @@ GibbsModel = function(G,cMat,V=NULL,vMat=NULL){
   if(!is.null(vMat) && !is.null(V)){
     if((length(V) != (G+1)) || (!is.numeric(V))){stop(
       "V must be a numeric vector of length (G+1).")}
-    if(sum(V)!=0){stop("V elements must have 0 sum.")}
+    #if(sum(V)!=0){stop("V elements must have 0 sum.")}
     if((!is.matrix(vMat)) || (ncol(vMat) !=(2*G + 1)) || (nrow(vMat) != C)){stop(
       "vMat must be a (C x 2G+1) matrix.")}
     #if(any(abs(rowSums(vMat))>0.001)){stop("vMat rows must have 0 sum.")}

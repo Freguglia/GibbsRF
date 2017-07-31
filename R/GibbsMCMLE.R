@@ -13,7 +13,6 @@
 #' @return a GibbsModel object with the estimated potentials.
 #' @examples
 #' GibbsMCMLE(example.X,example.GibbsModel,"symetric","zero") %>% Potentials
-#' @export
 
 
 GibbsMCMLE = function(X,gModelX,type="symetric",gModelRef="zero",nsamples=10000,showProgress=TRUE,

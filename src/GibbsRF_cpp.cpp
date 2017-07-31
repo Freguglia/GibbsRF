@@ -115,8 +115,8 @@ NumericMatrix DifHistogramcpp(NumericMatrix X,NumericMatrix cMat,int G){
   for(int x=0;x<n;x++){
     for(int y=0;y<m;y++){
       for(int c=0;c<C;c++){
-        neix = x + cMat(0,c);
-        neiy = y + cMat(1,c);
+        neix = x + cMat(c,0);
+        neiy = y + cMat(c,1);
         if(neix>=0 && neix<n && neiy<m && neiy>=0){
           dife = X(x,y) - X(neix,neiy);
           H(c,(dife+G))++;
