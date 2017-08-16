@@ -1,5 +1,6 @@
 #include <Rcpp.h>
 using namespace Rcpp;
+using namespace R;
 
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
@@ -125,4 +126,63 @@ NumericMatrix DifHistogramcpp(NumericMatrix X,NumericMatrix cMat,int G){
     }
   }
   return(H);
+}
+
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::export]]
+NumericMatrix MAPclassICM(NumericMatrix Y,NumericMatrix cMat, NumericVector V,
+                       NumericMatrix vMat,int G, NumericVector mus, NumericVector sigmas,
+                       NumericMatrix X, int iter){
+  int N = Y.nrow();
+  int M = Y.ncol();
+  NumericMatrix labels = Rcpp::clone(X);
+  NumericVector condProb(G+1);
+  IntegerVector position(2);
+  NumericVector cand(1);
+  double max_value;
+  int max_index=-1;
+
+  for(int i=0;i<iter;i++){
+    for(int x=0;x<N;x++){
+      for(int y=0;y<M;y++){
+        position[0] = x +1;
+        position[1] = y +1;
+        cand[0] = Y(x,y);
+        condProb = ConditionalProbs(labels,position,G,cMat,vMat,V);
+        max_value = 0;
+        for(int k=0;k<(G+1);k++){
+          condProb[k] = condProb[k]* dnorm(cand,mus[k],sigmas[k])[0];
+          if(condProb[k]>max_value){
+            max_value = condProb[k];
+            max_index=k;
+          }
+        }
+        labels(x,y) = max_index;
+      }
+    }
+  }
+  return(labels);
+}
+
+
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::export]]
+NumericMatrix HMEM_CondProb(NumericMatrix Y,NumericMatrix X, NumericMatrix cMat,
+                            NumericMatrix vMat, NumericVector V, int G,
+                            double mu, double sigma, int candidate_value){
+  NumericMatrix Px = Rcpp::clone(X);
+  int N = X.nrow();
+  int M = X.ncol();
+  IntegerVector position(2);
+  NumericVector cand(1);
+  for(int x=0;x<N;x++){
+    for(int y=0;y<M;y++){
+      position[0] = x+1;
+      position[1] = y+1;
+      cand[0] = Y(x,y);
+      Px(x,y) = ConditionalProbs(X,position,G,cMat,vMat,V)[candidate_value] *
+        dnorm(cand,mu,sigma)[0];
+    }
+  }
+  return(Px);
 }

@@ -82,3 +82,18 @@ vec2gModel = function(vec,cMat,G,type){
 
   return(GibbsModel(G,cMat,V,vMat))
 }
+
+#' @export
+LowPass = function(z,freqs){
+  N = nrow(z)
+  M = ncol(z)
+  I = matrix(0,nrow=N,ncol=M)
+  for(i in 1:N){
+    for(j in 1:M){
+      I[i,j] = ((min(i,(N-i))<=freqs[1]) && (min(j,(M-j))<=freqs[2]))
+    }
+  }
+  ff = fft(z)
+  ff = ff*I
+  (fft(ff,inverse = TRUE)/(N*M)) %>% Re %>% return
+}

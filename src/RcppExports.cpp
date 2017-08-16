@@ -77,6 +77,44 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// MAPclassICM
+NumericMatrix MAPclassICM(NumericMatrix Y, NumericMatrix cMat, NumericVector V, NumericMatrix vMat, int G, NumericVector mus, NumericVector sigmas, NumericMatrix X, int iter);
+RcppExport SEXP GibbsRF_MAPclassICM(SEXP YSEXP, SEXP cMatSEXP, SEXP VSEXP, SEXP vMatSEXP, SEXP GSEXP, SEXP musSEXP, SEXP sigmasSEXP, SEXP XSEXP, SEXP iterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
+    Rcpp::traits::input_parameter< int >::type G(GSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type mus(musSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type sigmas(sigmasSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    rcpp_result_gen = Rcpp::wrap(MAPclassICM(Y, cMat, V, vMat, G, mus, sigmas, X, iter));
+    return rcpp_result_gen;
+END_RCPP
+}
+// HMEM_CondProb
+NumericMatrix HMEM_CondProb(NumericMatrix Y, NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int G, double mu, double sigma, int candidate_value);
+RcppExport SEXP GibbsRF_HMEM_CondProb(SEXP YSEXP, SEXP XSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP, SEXP GSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP candidate_valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
+    Rcpp::traits::input_parameter< int >::type G(GSEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< int >::type candidate_value(candidate_valueSEXP);
+    rcpp_result_gen = Rcpp::wrap(HMEM_CondProb(Y, X, cMat, vMat, V, G, mu, sigma, candidate_value));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"GibbsRF_RandomMatrixCpp", (DL_FUNC) &GibbsRF_RandomMatrixCpp, 2},
@@ -84,6 +122,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"GibbsRF_rGRF", (DL_FUNC) &GibbsRF_rGRF, 6},
     {"GibbsRF_log_plik", (DL_FUNC) &GibbsRF_log_plik, 5},
     {"GibbsRF_DifHistogramcpp", (DL_FUNC) &GibbsRF_DifHistogramcpp, 3},
+    {"GibbsRF_MAPclassICM", (DL_FUNC) &GibbsRF_MAPclassICM, 9},
+    {"GibbsRF_HMEM_CondProb", (DL_FUNC) &GibbsRF_HMEM_CondProb, 9},
     {NULL, NULL, 0}
 };
 

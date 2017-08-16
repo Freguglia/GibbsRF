@@ -21,3 +21,11 @@ DifHistogramcpp <- function(X, cMat, G) {
     .Call('GibbsRF_DifHistogramcpp', PACKAGE = 'GibbsRF', X, cMat, G)
 }
 
+MAPclassICM <- function(Y, cMat, V, vMat, G, mus, sigmas, X, iter) {
+    .Call('GibbsRF_MAPclassICM', PACKAGE = 'GibbsRF', Y, cMat, V, vMat, G, mus, sigmas, X, iter)
+}
+
+HMEM_CondProb <- function(Y, X, cMat, vMat, V, G, mu, sigma, candidate_value) {
+    .Call('GibbsRF_HMEM_CondProb', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma, candidate_value)
+}
+

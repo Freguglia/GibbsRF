@@ -5,7 +5,8 @@
 \title{Segmentation of noisy image via Hidden Markov Field EM algorithm}
 \usage{
 HMEM(Y, gModel, classes = 2, biasField = FALSE, filter_freqs = c(4, 4),
-  maxiter = 150, mindif = 10^-3, show_progress = TRUE)
+  maxiter = 150, mindif = 10^-3, show_progress = TRUE, initial_mu,
+  initial_sigma)
 }
 \description{
 Provides EM estimation of parameters and segmentation.
