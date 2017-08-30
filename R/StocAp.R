@@ -1,4 +1,4 @@
-#' Stochastic Approximation
+#' Estimation of potentials values via Stochastic Approximation.
 #'
 #' Estimates potentials vias Stochastic Approximation algorithm.
 #' @param X The observed random field (matrix).

@@ -2,7 +2,7 @@
 % Please edit documentation in R/StocAp.R
 \name{StocAp}
 \alias{StocAp}
-\title{Stochastic Approximation}
+\title{Estimation of potentials values via Stochastic Approximation.}
 \usage{
 StocAp(X, gModel, type, initial = "MPLE", MC_size = 1, iter = 10000,
   macrosteps = 40)
