@@ -27,7 +27,7 @@ HMEM = function(Y,gModel,classes=2,biasField=FALSE,filter_freqs = c(4,4),
   iter = 0
   dif = 100
 
-  bias = (Y-mean(Y)) %>% LowPass(freqs = filter_freqs)
+  bias = Y %>% LowPass(freqs = filter_freqs)
   if(!biasField){bias = bias*0}
 
   while(iter<maxiter && dif>mindif){
@@ -48,9 +48,9 @@ HMEM = function(Y,gModel,classes=2,biasField=FALSE,filter_freqs = c(4,4),
 
 
     #Update parameters
-    n_mus = apply(matrix(1:classes),1,function(x){return(sum(Px[,,x]*Y)/sum(Px[,,x]))})
+    n_mus = apply(matrix(1:classes),1,function(x){return(sum(Px[,,x]*(Y-bias))/sum(Px[,,x]))})
     n_sigmas = apply(matrix(1:classes),1,function(x){
-      return(sum(Px[,,x]*(Y-n_mus[x])^2)/sum(Px[,,x]))}) %>% sqrt
+      return(sum(Px[,,x]*(Y-bias-n_mus[x])^2)/sum(Px[,,x]))}) %>% sqrt
 
     #Estimate the Bias Field
     if(biasField){
