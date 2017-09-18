@@ -40,7 +40,7 @@ NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position,
       neix = x + cMat(ne,0);
       neiy = y + cMat(ne,1);
       if(neix < n && neix >=0 && neiy < m && neiy>=0){
-        dif = vals[value] - X(neix,neiy);
+        dif = X(neix,neiy) - vals[value] ;
         U = U + vMat(ne,dif+max_value);
       }
     }

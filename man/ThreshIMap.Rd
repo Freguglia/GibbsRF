@@ -11,6 +11,9 @@ ThreshIMap(iMap, k)
 
 \item{k}{the thresholding parameter. The cut value is set as MD + k*SD. MD being the mean distance in the map, and SD their sample deviation.}
 }
+\value{
+a DataFrame with the new Interaction Map with values thresholded.
+}
 \description{
 Removes from Interaction Map all relative positions with lower Distance than a threshold based on k.
 }

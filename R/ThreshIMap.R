@@ -4,7 +4,7 @@
 #'
 #' @param iMap a DataFrame with an Interaction Map (see function InteractionMap() for details).
 #' @param k the thresholding parameter. The cut value is set as MD + k*SD. MD being the mean distance in the map, and SD their sample deviation.
-#' @result a DataFrame with the new Interaction Map with values thresholded.
+#' @return a DataFrame with the new Interaction Map with values thresholded.
 #' @author Victor Freguglia Souza
 #' @export
 
