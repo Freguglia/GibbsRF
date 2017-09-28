@@ -97,3 +97,45 @@ LowPass = function(z,freqs){
   ff = ff*I
   (fft(ff,inverse = TRUE)/(N*M)) %>% Re %>% return
 }
+
+#' @export
+getFrequencyCoef2 = function(ft,n,m,f1,f2){
+  N = dim(ft)[1] + 1
+  M = dim(ft)[2] + 1
+  if(f1=="cos" & f2=="cos"){
+    if(n>0){
+      coef = (Re(ft[n+1,m+1]) + Re(ft[N-n,m+1]))/2
+      return(coef)
+    }
+    if(m>0){
+      coef = (Re(ft[n+1,m+1]) + Re(ft[n+1,M-m]))/2
+      return(coef)
+    }
+    coef = Re(ft[1,1])
+    return(coef)
+  }
+
+  if(f1=="sin" & f2=="sin" &(n*m)>0){
+    coef = -(Re(ft[n+1,m+1]) - Re(ft[N-n,m+1]))/2
+    return(coef)
+  }
+
+  if(f1=="cos" & f2=="sin" & m>0){
+    if(n>0){
+      coef = -(Im(ft[n+1,m+1])+ Im(ft[N-n,m+1]))/2
+      return(coef)
+    }
+    coef = -Im(ft[n+1,m+1])
+    return(coef)
+  }
+
+  if(f1=="sin" & f2=="cos" & n>0){
+    if(m>0){
+      coef = -(Im(ft[n+1,m+1])+ Im(ft[n+1,M-m]))/2
+      return(coef)
+    }
+    coef = -Im(ft[n+1,m+1])
+    return(coef)
+  }
+}
+
