@@ -98,6 +98,12 @@ LowPass = function(z,freqs){
   (fft(ff,inverse = TRUE)/(N*M)) %>% Re %>% return
 }
 
+#' Gets real-valued fourier transform coefficent for a specific pair of frequencies and functions based on the (matrix) fft.
+#' @param ft the fourier transform (matrix) object of a image.
+#' @param n,m the frequency to get coefficients for.
+#' @param f1,f2 names of the functions for the coefficient, can be either "cos" or "sin".
+#' @author Victor Freguglia Souza
+#' @return the numeric value of the coefficient.
 #' @export
 getFrequencyCoef2 = function(ft,n,m,f1,f2){
   N = dim(ft)[1] + 1
