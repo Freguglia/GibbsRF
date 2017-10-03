@@ -2,21 +2,22 @@
 % Please edit documentation in R/betaPLS.R
 \name{betaPLS}
 \alias{betaPLS}
-\title{Calculates penalized least squares for orthogonal design matrix, based on ordinary least squares estimates.}
+\title{Calculates penalized least squares estimates for orthogonal design matrix, based on ordinary least squares estimates.}
 \usage{
-betaPLS(df.beta, lambda, penalty.type = "L0", fnlambda)
+betaPLS(coeftab, lambda, penalty.type = "L0", fnlambda = function(a, b)
+  exp(max(a, b)/2))
 }
 \arguments{
-\item{df.beta}{a data.frame representation of the OLS coefficients (result of buildFrequencyDf()).}
-
 \item{lambda}{a constant.}
 
 \item{fnlambda}{a function that maps each pair of frequencies to a constant between 0 and 1, corresponding to how the penalty relates to n and m.}
 
+\item{df.beta}{a data.frame representation of the OLS coefficients (result of buildFrequencyDf()).}
+
 \item{type}{the type of penalty. "L0" corresponds to hard thresholding, "L1" corresponds to LASSO or "SCAD".}
 }
 \description{
-Calculates penalized least squares for orthogonal design matrix, based on ordinary least squares estimates.
+Calculates penalized least squares estimates for orthogonal design matrix, based on ordinary least squares estimates.
 }
 \author{
 Victor Freguglia Souza

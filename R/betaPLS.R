@@ -1,4 +1,4 @@
-#' Calculates penalized least squares for orthogonal design matrix, based on ordinary least squares estimates.
+#' Calculates penalized least squares estimates for orthogonal design matrix, based on ordinary least squares estimates.
 #' @param df.beta a data.frame representation of the OLS coefficients (result of buildFrequencyDf()).
 #' @param type the type of penalty. "L0" corresponds to hard thresholding, "L1" corresponds to LASSO or "SCAD".
 #' @param fnlambda a function that maps each pair of frequencies to a constant between 0 and 1, corresponding to how the penalty relates to n and m.
@@ -8,6 +8,22 @@
 #' @author Victor Freguglia Souza
 #'
 
-betaPLS = function(df.beta,lambda,penalty.type="L0",fnlambda){
+betaPLS = function(coeftab,lambda,penalty.type="L0",fnlambda = function(a,b) exp(max(a,b)/2)){
+  coeftab = coeftab %>% rowwise() %>% mutate(lambdas = lambda*fnlambda(n,m))
+  if(penalty.type=="L0"){
+    coeftab = coeftab %>% mutate(coefs = coefs*(abs(coefs)>lambdas)) %>%
+      filter(abs(coefs)>0)
+    return(coeftab)
+  }
 
+  if(penalty.type=="L1"){
+    coeftab = coeftab %>% mutate(coefs = coefs*max(0,(1-lambdas/abs(coefs)))) %>%
+      filter(abs(coefs)>0)
+    return(coeftab)
+  }
+
+  if(penalty.type=="SCAD"){
+
+  }
+  message("Penalty type not valid.")
 }
