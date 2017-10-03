@@ -4,8 +4,8 @@
 \alias{betaPLS}
 \title{Calculates penalized least squares estimates for orthogonal design matrix, based on ordinary least squares estimates.}
 \usage{
-betaPLS(coeftab, lambda, penalty.type = "L0", fnlambda = function(a, b)
-  exp(max(a, b)/2))
+betaPLS(coeftab, lambda, penalty.type = "L0", fnlambda = function(b1, b2)
+  exp(max(b1, b2)/2), a = 3.7)
 }
 \arguments{
 \item{lambda}{a constant.}
