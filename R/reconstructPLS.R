@@ -1,3 +1,8 @@
+#' Reconstruct an image based on frequencies coefficients.
+#'
+#' @param beta_df the data.frame representation of frequency coefficients. Result of betaPLS() or buildFrequencyDf().
+#' @param img_dim Dimensions of the image.
+#' @author Victor Freguglia Souza
 #' @export
 
 reconstructPLS = function(beta_df,img_dim){
