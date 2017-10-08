@@ -11,6 +11,9 @@ reconstructPLS(beta_df, img_dim)
 
 \item{img_dim}{Dimensions of the image.}
 }
+\value{
+a data.frame object with columns indicating positions (from 0) and the intensity.
+}
 \description{
 Reconstruct an image based on frequencies coefficients.
 }

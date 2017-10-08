@@ -2,6 +2,7 @@
 #'
 #' @param beta_df the data.frame representation of frequency coefficients. Result of betaPLS() or buildFrequencyDf().
 #' @param img_dim Dimensions of the image.
+#' @return a data.frame object with columns indicating positions (from 0) and the intensity.
 #' @author Victor Freguglia Souza
 #' @export
 

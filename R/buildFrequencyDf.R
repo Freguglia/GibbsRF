@@ -1,6 +1,6 @@
 #' Calculates coefficients for real-valued fourier transform of an image.
 #' @param dfY a data.frame representation of an image.
-#' @value a data.frame with rows corresponding to combinations of frequencies and functions and their respective real-valued fourier transform coefficient.
+#' @return a data.frame with rows corresponding to combinations of frequencies and functions and their respective real-valued fourier transform coefficient.
 #' @export
 #' @author Victor Freguglia Souza
 buildFrequencyDf = function(dfY){

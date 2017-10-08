@@ -16,6 +16,9 @@ betaPLS(coeftab, lambda, penalty.type = "L0", fnlambda = function(b1, b2)
 
 \item{type}{the type of penalty. "L0" corresponds to hard thresholding, "L1" corresponds to LASSO or "SCAD".}
 }
+\value{
+a data.frame with rows corresponding to combinations of frequencies and functions and their respective real-valued fourier transform coefficient.
+}
 \description{
 Calculates penalized least squares estimates for orthogonal design matrix, based on ordinary least squares estimates.
 }
