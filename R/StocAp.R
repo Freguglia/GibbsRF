@@ -6,8 +6,10 @@
 #' @param type Model type. Either "general", "symetric" or "equal". Check GibbsMPLE for details.
 #' @param initial Wich method to get initial estimates. Currently only "MPLE" available.
 #' @param MC_size Number of fields to sample at each step.
+#' @param print_sample Indicates if the a sample of the current model should be printed each 10 steps.
 #' @param iter Maximum number of iterations.
 #' @param macrosteps Number of macrosteps per random field simulation.
+#' @param a0,a1,a2 constants to define size of each step. The gradient vector is multiplied by a0/(i*a1 + a2)
 #' @return A GibbsModel object estimated potentials.
 #' @author Victor Freguglia Souza
 #' @examples
@@ -15,21 +17,23 @@
 #' @export
 
 
-StocAp = function(X,gModel,type,initial="MPLE",MC_size = 1,iter = 10000,macrosteps = 40){
+StocAp = function(X,gModel,type,initial="MPLE",MC_size = 1,iter = 10000,macrosteps = 40,
+                  print_sample = TRUE,a0=1,a1=1/20,a2=3){
   cMat = gModel$cMat
   G = gModel$G
   Tvec = vecStat(X,cMat,G,type)
 
-  if(initial == "MPLE"){
-    cat('\r','Getting MPLE for initialization')
-    theta0 = GibbsMPLE(X,gModel,type) %>% vecTheta(type=type)
-  }
+  cat('\r','Calculating MPLE for initialization')
+  theta0 = GibbsMPLE(X,gModel,type) %>% vecTheta(type=type)
+
+  if(initial=="zero"){theta0 = theta0*0}
+
   grad = 10
   i = 0
   theta = theta0
   StatList = matrix(0,nrow=MC_size,ncol=length(theta))
   while(i<iter&&max(abs(grad))>.0005){
-    a = 10/(i/20+3)
+    a = a0/(i*a1+a2)
     cat('\r','Iteration Number: ',i,' current theta: ',theta)
     gm = gModelTheta(theta,cMat,G,type)
     for(j in 1:MC_size){
@@ -42,7 +46,7 @@ StocAp = function(X,gModel,type,initial="MPLE",MC_size = 1,iter = 10000,macroste
     n_theta = theta + a*grad
     theta = n_theta
     i = i+1
-    if(i%%10==0){S %>% as.cimg %>% plot}
+    if((i%%10==0) &&print_sample){S %>% as.cimg %>% plot}
   }
   return(gm)
 }

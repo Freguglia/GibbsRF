@@ -5,7 +5,7 @@
 \title{Estimation of potentials values via Stochastic Approximation.}
 \usage{
 StocAp(X, gModel, type, initial = "MPLE", MC_size = 1, iter = 10000,
-  macrosteps = 40)
+  macrosteps = 40, print_sample = TRUE, a0 = 1, a1 = 1/20, a2 = 3)
 }
 \arguments{
 \item{X}{The observed random field (matrix).}
@@ -21,6 +21,10 @@ StocAp(X, gModel, type, initial = "MPLE", MC_size = 1, iter = 10000,
 \item{iter}{Maximum number of iterations.}
 
 \item{macrosteps}{Number of macrosteps per random field simulation.}
+
+\item{print_sample}{Indicates if the a sample of the current model should be printed each 10 steps.}
+
+\item{a0, a1, a2}{constants to define size of each step. The gradient vector is multiplied by a0/(i*a1 + a2)}
 }
 \value{
 A GibbsModel object estimated potentials.
