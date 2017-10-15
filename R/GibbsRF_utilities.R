@@ -90,7 +90,7 @@ LowPass = function(z,freqs){
   I = matrix(0,nrow=N,ncol=M)
   for(i in 1:N){
     for(j in 1:M){
-      I[i,j] = ((min(i,(N-i))<=freqs[1]) && (min(j,(M-j))<=freqs[2]))
+      I[i,j] = ((min(i-1,(N-i))<=freqs[1]) && (min(j-1,(M-j))<=freqs[2]))
     }
   }
   ff = fft(z)
