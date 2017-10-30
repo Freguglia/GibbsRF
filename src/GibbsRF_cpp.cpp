@@ -186,3 +186,41 @@ NumericMatrix HMEM_CondProb(NumericMatrix Y,NumericMatrix X, NumericMatrix cMat,
   }
   return(Px);
 }
+
+
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::export]]
+NumericMatrix Hidden_CondSample(NumericMatrix Y,NumericMatrix X, NumericMatrix cMat,
+                            NumericMatrix vMat, NumericVector V, int G,
+                            NumericVector mu, NumericVector sigma){
+  NumericMatrix Nx = Rcpp::clone(X);
+  int N = X.nrow();
+  int M = X.ncol();
+  int x,y;
+  IntegerVector values = seq_len(G+1) - 1;
+  NumericVector probs(G+1);
+  IntegerVector position(2);
+  NumericVector cand(1);
+  double media,dev;
+  int pixnum = N*M;
+
+  IntegerVector runpath(pixnum);
+  IntegerVector pixset = seq_len(pixnum) - 1;
+  runpath = sample(pixset,pixnum,false);
+    for(int i=0;i<pixnum;i++){
+      x = (runpath[i]/M) +1;
+      y = (runpath[i]%M) +1;
+      position[0] = x;
+      position[1] = y;
+      probs =   ConditionalProbs(Nx, position,G,cMat,vMat,V);
+      for(int j=0;j<(G+1);j++){
+        media = mu[j];
+        dev=sigma[j];
+        cand[0] = Y(x-1,y-1);
+        probs[j] =  probs[j] * dnorm(cand,media,dev)[0];
+      }
+      probs = probs/sum(probs);
+      Nx(x-1,y-1) = sample(values,1,false,probs)[0];
+    }
+  return(Nx);
+}

@@ -9,6 +9,6 @@ License:
 Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 0.12.11), RcppArmadillo
-Depends: imager, ggplot2, tidyverse
+Depends: imager, ggplot2, tidyverse, MCMCpack
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1

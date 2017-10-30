@@ -115,6 +115,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// Hidden_CondSample
+NumericMatrix Hidden_CondSample(NumericMatrix Y, NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int G, NumericVector mu, NumericVector sigma);
+RcppExport SEXP _GibbsRF_Hidden_CondSample(SEXP YSEXP, SEXP XSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP, SEXP GSEXP, SEXP muSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
+    Rcpp::traits::input_parameter< int >::type G(GSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(Hidden_CondSample(Y, X, cMat, vMat, V, G, mu, sigma));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GibbsRF_RandomMatrixCpp", (DL_FUNC) &_GibbsRF_RandomMatrixCpp, 2},
@@ -124,6 +142,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GibbsRF_DifHistogramcpp", (DL_FUNC) &_GibbsRF_DifHistogramcpp, 3},
     {"_GibbsRF_MAPclassICM", (DL_FUNC) &_GibbsRF_MAPclassICM, 9},
     {"_GibbsRF_HMEM_CondProb", (DL_FUNC) &_GibbsRF_HMEM_CondProb, 9},
+    {"_GibbsRF_Hidden_CondSample", (DL_FUNC) &_GibbsRF_Hidden_CondSample, 8},
     {NULL, NULL, 0}
 };
 

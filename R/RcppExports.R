@@ -29,3 +29,7 @@ HMEM_CondProb <- function(Y, X, cMat, vMat, V, G, mu, sigma, candidate_value) {
     .Call('_GibbsRF_HMEM_CondProb', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma, candidate_value)
 }
 
+Hidden_CondSample <- function(Y, X, cMat, vMat, V, G, mu, sigma) {
+    .Call('_GibbsRF_Hidden_CondSample', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma)
+}
+
