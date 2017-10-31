@@ -17,6 +17,9 @@ GibbsSamplerHMRF = function(Y,gModel,imu,isigma2,iseg,coeftab,size = 10000){
   current_mu = imu
   current_sigma2 = isigma2
   L = iseg
+  #Xmat = DesignMat(coeftab)
+  cMat = complete_cMat(gModel$cMat)
+  vMat = complete_vMat(gModel$vMat)
 
   for(i in 1:size){
     cat('\r',i)
@@ -32,7 +35,7 @@ GibbsSamplerHMRF = function(Y,gModel,imu,isigma2,iseg,coeftab,size = 10000){
     current_sigma2 = sigma2s[i,]
 
     #Update segmentation
-    L = Hidden_CondSample(Y,iseg,gModel$cMat,gModel$vMat,gModel$V,gModel$G,current_mu,sqrt(current_sigma2))
+    L = Hidden_CondSample(Y,iseg,cMat,vMat,gModel$V,gModel$G,current_mu,sqrt(current_sigma2))
   }
   return(list(mus,sigma2s,L))
 }
