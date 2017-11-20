@@ -2,34 +2,34 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 RandomMatrixCpp <- function(dim, max_value) {
-    .Call('_GibbsRF_RandomMatrixCpp', PACKAGE = 'GibbsRF', dim, max_value)
+    .Call('GibbsRF_RandomMatrixCpp', PACKAGE = 'GibbsRF', dim, max_value)
 }
 
 ConditionalProbs <- function(X, position, max_value, cMat, vMat, V) {
-    .Call('_GibbsRF_ConditionalProbs', PACKAGE = 'GibbsRF', X, position, max_value, cMat, vMat, V)
+    .Call('GibbsRF_ConditionalProbs', PACKAGE = 'GibbsRF', X, position, max_value, cMat, vMat, V)
 }
 
 rGRF <- function(cMat, vMat, V, max_value, macrosteps, initial) {
-    .Call('_GibbsRF_rGRF', PACKAGE = 'GibbsRF', cMat, vMat, V, max_value, macrosteps, initial)
+    .Call('GibbsRF_rGRF', PACKAGE = 'GibbsRF', cMat, vMat, V, max_value, macrosteps, initial)
 }
 
 log_plik <- function(X, cMat, vMat, V, max_value) {
-    .Call('_GibbsRF_log_plik', PACKAGE = 'GibbsRF', X, cMat, vMat, V, max_value)
+    .Call('GibbsRF_log_plik', PACKAGE = 'GibbsRF', X, cMat, vMat, V, max_value)
 }
 
 DifHistogramcpp <- function(X, cMat, G) {
-    .Call('_GibbsRF_DifHistogramcpp', PACKAGE = 'GibbsRF', X, cMat, G)
+    .Call('GibbsRF_DifHistogramcpp', PACKAGE = 'GibbsRF', X, cMat, G)
 }
 
 MAPclassICM <- function(Y, cMat, V, vMat, G, mus, sigmas, X, iter) {
-    .Call('_GibbsRF_MAPclassICM', PACKAGE = 'GibbsRF', Y, cMat, V, vMat, G, mus, sigmas, X, iter)
+    .Call('GibbsRF_MAPclassICM', PACKAGE = 'GibbsRF', Y, cMat, V, vMat, G, mus, sigmas, X, iter)
 }
 
 HMEM_CondProb <- function(Y, X, cMat, vMat, V, G, mu, sigma, candidate_value) {
-    .Call('_GibbsRF_HMEM_CondProb', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma, candidate_value)
+    .Call('GibbsRF_HMEM_CondProb', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma, candidate_value)
 }
 
 Hidden_CondSample <- function(Y, X, cMat, vMat, V, G, mu, sigma) {
-    .Call('_GibbsRF_Hidden_CondSample', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma)
+    .Call('GibbsRF_Hidden_CondSample', PACKAGE = 'GibbsRF', Y, X, cMat, vMat, V, G, mu, sigma)
 }
 
