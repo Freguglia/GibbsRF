@@ -7,7 +7,7 @@
 #' @return A matrix with selected relative positions, ready to be used as \code{cMat} of GibbsModel.
 #' @export
 
-PartialCorSelection = function(IMG,window_size = 10,thr = 0.05){
+PartialCorSelection = function(IMG,window_size = 10,thr = 0.1){
   iMap1 = PartialCorMap(IMG,window_size)
   topcor = max(iMap1$Distance)
   C = NULL

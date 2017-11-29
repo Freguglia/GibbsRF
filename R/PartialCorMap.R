@@ -30,10 +30,12 @@ PartialCorMap = function(IMG,window_size=10,
       }
       Xic = IMG[(w+1+x):(N-w+x),]
       Xic = Xic[,(w+1+y):(M-w+y)]
-      Xp = lm(Xi~desi)$residuals
+      Xp = lm(Xi~0+desi)$residuals
+      Xic = lm(as.vector(Xic)~0+desi)$residuals
       return(cor(Xp,as.vector(Xic)))
     }
-    positions = positions %>% rowwise() %>% mutate(Distance = abs(PartposCor(X,Y)))
+    PartposCor = Vectorize(PartposCor,c("x","y"))
+    positions = positions %>% mutate(Distance = abs(PartposCor(X,Y)))
     return(positions)
   }
 }
