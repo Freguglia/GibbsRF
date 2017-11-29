@@ -30,8 +30,8 @@ PartialCorMap = function(IMG,window_size=10,
       }
       Xic = IMG[(w+1+x):(N-w+x),]
       Xic = Xic[,(w+1+y):(M-w+y)]
-      Xp = lm(Xi~0+desi)$residuals
-      Xic = lm(as.vector(Xic)~0+desi)$residuals
+      Xp = lm(Xi~desi)$residuals
+      Xic = lm(as.vector(Xic)~desi)$residuals
       return(cor(Xp,as.vector(Xic)))
     }
     PartposCor = Vectorize(PartposCor,c("x","y"))
