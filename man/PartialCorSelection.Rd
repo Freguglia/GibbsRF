@@ -4,7 +4,7 @@
 \alias{PartialCorSelection}
 \title{Interaction structure selection based on partial auto-correlations}
 \usage{
-PartialCorSelection(IMG, window_size = 10, thr = 0.05)
+PartialCorSelection(IMG, window_size = 10, thr = 0.1)
 }
 \arguments{
 \item{IMG}{An image in a matrix object.}
