@@ -47,15 +47,15 @@ GibbsMCMLE = function(X,gModelX,type="symetric",gModelRef="MPLE",nsamples=1000,s
       gm = vec2gModel(params,cMat,G,type)
       V = gm$V
       vMat = gm$vMat
-      ll = sum((vMat)*(dX)) + sum((V)*(table(X)))
+      llik = sum((vMat)*(dX)) + sum((V)*(table(X)))
       s = c(1:nsamples) %>% as.matrix
       logh = apply(s,1,function(x) return(sum((dS[,,x])*(vMat-phivMat)))) +
         apply(s,1,function(x) return(sum((tS[x,])*(V-phiV))))
       meio = mean(logh)
       dife = logh - meio
       second_term = log(mean(exp(dife)))
-      ll = ll - second_term - (meio)
-      return(ll)
+      llik = llik - second_term - (meio)
+      return(llik)
     }
   }
   cat('\r','Starting optimization process. May take a while','                ')
