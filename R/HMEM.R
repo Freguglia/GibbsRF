@@ -17,18 +17,17 @@ HMEM = function(Y,gModel,classes=2,biasField=FALSE,filter_freqs = c(4,4),
   V = gModel$V
   sigmas = initial_sigma
   mus = initial_mu
-  quants = quantile(Y,probs = seq(0,1,1/classes)) %>% as.numeric
-  X = apply(Y,c(1,2),function(x){
-      ps = dnorm(x,mean=mus,sd = sigmas)
-      return(which(ps==max(ps)))
-  }) %>% as.matrix
-  N = dim(X)[1]
-  M = dim(X)[2]
   iter = 0
   dif = 100
 
   bias = Y %>% LowPass(freqs = filter_freqs)
   if(!biasField){bias = bias*0}
+  X = apply(Y-bias,c(1,2),function(x){
+    ps = dnorm(x,mean=mus,sd = sigmas)
+    return(which(ps==max(ps)))
+  }) %>% as.matrix
+  N = dim(X)[1]
+  M = dim(X)[2]
 
   while(iter<maxiter && dif>mindif){
     #Estimate the class labels
