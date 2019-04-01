@@ -5,7 +5,8 @@
 \title{Estimation of potentials values via Stochastic Approximation.}
 \usage{
 StocAp(X, gModel, type, initial = "MPLE", MC_size = 1, iter = 10000,
-  macrosteps = 40, print_sample = TRUE, a0 = 1, a1 = 1/20, a2 = 3)
+  macrosteps = 40, print_sample = TRUE, a0 = 1, a1 = 1/20,
+  a2 = 3)
 }
 \arguments{
 \item{X}{The observed random field (matrix).}
