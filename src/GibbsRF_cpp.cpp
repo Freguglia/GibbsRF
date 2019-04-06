@@ -19,29 +19,24 @@ NumericMatrix RandomMatrixCpp(IntegerVector dim, int max_value) {
 
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position,
-                                  int max_value, NumericMatrix cMat, NumericMatrix vMat,
-                                  NumericVector V) {
-  IntegerVector v = seq_len(max_value+1) - 1;
-  int n = X.nrow();
-  int m = X.ncol();
-  int cons = cMat.nrow();
-  int x = position[0] -1;
-  int y = position[1] -1;
-  int neix,neiy;
-  NumericVector p(max_value + 1);
-  IntegerVector vals = seq_len(max_value+1) - 1;
+NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position,  int C, NumericMatrix cMat, NumericMatrix vMat, NumericVector V) {
+  
+  int n = X.nrow(); int m = X.ncol();
+  int n_neighbors = cMat.nrow();
+  int x = position[0] -1; int y = position[1] -1;
+  int neix, neiy;
+  NumericVector p(C + 1);
+  IntegerVector vals = seq_len(C+1) - 1;
   double U;
   int dif;
 
-  for(int value=0;value<=max_value;value++){
+  for(int value = 0; value <= C; value++){
     U = V[value];
-    for(int ne=0;ne<cons;ne++){
-      neix = x + cMat(ne,0);
-      neiy = y + cMat(ne,1);
+    for(int ne=0; ne < n_neighbors; ne++){
+      neix = x + cMat(ne,0); neiy = y + cMat(ne,1);
       if(neix < n && neix >=0 && neiy < m && neiy>=0){
         dif = X(neix,neiy) - vals[value] ;
-        U = U + vMat(ne,dif+max_value);
+        U = U + vMat(ne,dif+C);
       }
     }
     p[value] = exp(U);
@@ -50,30 +45,46 @@ NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position,
   return(p);
 }
 
+
+// [[Rcpp::depends(RcppArmadillo)]]
+//' @export
+// [[Rcpp::export]]
+NumericMatrix multiple_times_old(NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int C, int n_times){
+  NumericVector probability;
+  int N = X.nrow(); int M = X.ncol();
+  int x,y;
+  IntegerVector position(2);
+  for(int i = 0; i < n_times; i++){
+    x = 2;
+    y = 2;
+    position[0] = x; position[1] = y;
+    probability = ConditionalProbs(X, position, C, cMat, vMat, V);
+  }
+  return(X);
+}
+
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-NumericMatrix rGRF(NumericMatrix cMat, NumericMatrix vMat, NumericVector V,
-                   int max_value,int macrosteps,
-                   NumericMatrix initial){
-  int n,m;
-  n = initial.nrow();
-  m = initial.ncol();
-  int pixnum = n*m;
+NumericMatrix rGRF(NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int max_value,int macrosteps, NumericMatrix initial){
+  
+  int N = initial.nrow();
+  int M = initial.ncol();
+  NumericMatrix X(N,M);
+  X = Rcpp::clone(initial);
+  int pixnum = N*M;
   int x,y;
   IntegerVector values = seq_len(max_value+1) - 1;
   NumericVector cProbs(max_value + 1);
   IntegerVector coords(2);
 
-  NumericMatrix X(n,m);
-  X = Rcpp::clone(initial);
-
+  
   IntegerVector runpath(pixnum);
   IntegerVector pixset = seq_len(pixnum) - 1;
   for(int ms=0;ms<macrosteps;ms++){
     runpath = sample(pixset,pixnum,false);
     for(int i=0;i<pixnum;i++){
-      x = (runpath[i]/m) +1;
-      y = (runpath[i]%m) +1;
+      x = (runpath[i]/M) +1;
+      y = (runpath[i]%M) +1;
       coords[0] = x;
       coords[1] = y;
       cProbs = ConditionalProbs(X,coords,max_value,cMat,vMat,V);

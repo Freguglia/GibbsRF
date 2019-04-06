@@ -18,18 +18,34 @@ BEGIN_RCPP
 END_RCPP
 }
 // ConditionalProbs
-NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position, int max_value, NumericMatrix cMat, NumericMatrix vMat, NumericVector V);
-RcppExport SEXP _GibbsRF_ConditionalProbs(SEXP XSEXP, SEXP positionSEXP, SEXP max_valueSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP) {
+NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position, int C, NumericMatrix cMat, NumericMatrix vMat, NumericVector V);
+RcppExport SEXP _GibbsRF_ConditionalProbs(SEXP XSEXP, SEXP positionSEXP, SEXP CSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type position(positionSEXP);
-    Rcpp::traits::input_parameter< int >::type max_value(max_valueSEXP);
+    Rcpp::traits::input_parameter< int >::type C(CSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
-    rcpp_result_gen = Rcpp::wrap(ConditionalProbs(X, position, max_value, cMat, vMat, V));
+    rcpp_result_gen = Rcpp::wrap(ConditionalProbs(X, position, C, cMat, vMat, V));
+    return rcpp_result_gen;
+END_RCPP
+}
+// multiple_times_old
+NumericMatrix multiple_times_old(NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int C, int n_times);
+RcppExport SEXP _GibbsRF_multiple_times_old(SEXP XSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP, SEXP CSEXP, SEXP n_timesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
+    Rcpp::traits::input_parameter< int >::type C(CSEXP);
+    Rcpp::traits::input_parameter< int >::type n_times(n_timesSEXP);
+    rcpp_result_gen = Rcpp::wrap(multiple_times_old(X, cMat, vMat, V, C, n_times));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -137,6 +153,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_GibbsRF_RandomMatrixCpp", (DL_FUNC) &_GibbsRF_RandomMatrixCpp, 2},
     {"_GibbsRF_ConditionalProbs", (DL_FUNC) &_GibbsRF_ConditionalProbs, 6},
+    {"_GibbsRF_multiple_times_old", (DL_FUNC) &_GibbsRF_multiple_times_old, 6},
     {"_GibbsRF_rGRF", (DL_FUNC) &_GibbsRF_rGRF, 6},
     {"_GibbsRF_log_plik", (DL_FUNC) &_GibbsRF_log_plik, 5},
     {"_GibbsRF_DifHistogramcpp", (DL_FUNC) &_GibbsRF_DifHistogramcpp, 3},
