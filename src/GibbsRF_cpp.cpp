@@ -45,32 +45,12 @@ NumericVector ConditionalProbs(NumericMatrix X, IntegerVector position,  int C, 
   return(p);
 }
 
-
-// [[Rcpp::depends(RcppArmadillo)]]
-//' @export
-// [[Rcpp::export]]
-NumericMatrix multiple_times_old(NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int C, int n_times){
-  NumericVector probability;
-  int N = X.nrow(); int M = X.ncol();
-  int x,y;
-  IntegerVector position(2);
-  for(int i = 0; i < n_times; i++){
-    x = 2;
-    y = 2;
-    position[0] = x; position[1] = y;
-    probability = ConditionalProbs(X, position, C, cMat, vMat, V);
-  }
-  return(X);
-}
-
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
 NumericMatrix rGRF(NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int max_value,int macrosteps, NumericMatrix initial){
   
-  int N = initial.nrow();
-  int M = initial.ncol();
-  NumericMatrix X(N,M);
-  X = Rcpp::clone(initial);
+  int N = initial.nrow(); int M = initial.ncol();
+  NumericMatrix X(N,M); X = Rcpp::clone(initial);
   int pixnum = N*M;
   int x,y;
   IntegerVector values = seq_len(max_value+1) - 1;
