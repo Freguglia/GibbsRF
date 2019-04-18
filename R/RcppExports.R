@@ -9,11 +9,6 @@ ConditionalProbs <- function(X, position, C, cMat, vMat, V) {
     .Call('_GibbsRF_ConditionalProbs', PACKAGE = 'GibbsRF', X, position, C, cMat, vMat, V)
 }
 
-#' @export
-multiple_times_old <- function(X, cMat, vMat, V, C, n_times) {
-    .Call('_GibbsRF_multiple_times_old', PACKAGE = 'GibbsRF', X, cMat, vMat, V, C, n_times)
-}
-
 rGRF <- function(cMat, vMat, V, max_value, macrosteps, initial) {
     .Call('_GibbsRF_rGRF', PACKAGE = 'GibbsRF', cMat, vMat, V, max_value, macrosteps, initial)
 }

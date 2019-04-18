@@ -33,22 +33,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// multiple_times_old
-NumericMatrix multiple_times_old(NumericMatrix X, NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int C, int n_times);
-RcppExport SEXP _GibbsRF_multiple_times_old(SEXP XSEXP, SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP, SEXP CSEXP, SEXP n_timesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type X(XSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type cMat(cMatSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type vMat(vMatSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type V(VSEXP);
-    Rcpp::traits::input_parameter< int >::type C(CSEXP);
-    Rcpp::traits::input_parameter< int >::type n_times(n_timesSEXP);
-    rcpp_result_gen = Rcpp::wrap(multiple_times_old(X, cMat, vMat, V, C, n_times));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rGRF
 NumericMatrix rGRF(NumericMatrix cMat, NumericMatrix vMat, NumericVector V, int max_value, int macrosteps, NumericMatrix initial);
 RcppExport SEXP _GibbsRF_rGRF(SEXP cMatSEXP, SEXP vMatSEXP, SEXP VSEXP, SEXP max_valueSEXP, SEXP macrostepsSEXP, SEXP initialSEXP) {
@@ -153,7 +137,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_GibbsRF_RandomMatrixCpp", (DL_FUNC) &_GibbsRF_RandomMatrixCpp, 2},
     {"_GibbsRF_ConditionalProbs", (DL_FUNC) &_GibbsRF_ConditionalProbs, 6},
-    {"_GibbsRF_multiple_times_old", (DL_FUNC) &_GibbsRF_multiple_times_old, 6},
     {"_GibbsRF_rGRF", (DL_FUNC) &_GibbsRF_rGRF, 6},
     {"_GibbsRF_log_plik", (DL_FUNC) &_GibbsRF_log_plik, 5},
     {"_GibbsRF_DifHistogramcpp", (DL_FUNC) &_GibbsRF_DifHistogramcpp, 3},
